@@ -1,8 +1,8 @@
 # Sketch Replace Images
 
-A plugin to replace/update existing images in a sketch document.
+A plugin to replace ()as in update) existing images by name in a sketch document.
 
-currently only png...
+Supported image types: ```png, jpg, jpeg```
 
 ---
 
@@ -26,7 +26,7 @@ currently only png...
 
 ##Usage
 
-1. Select the plugin from the menu or press ```ctrl⇧⌘R``` 
+1. Select the plugin from the menu or press ```ctrl + ⇧ + ⌘ + R``` 
 2. Specify relative path to image directory, you'll need to authorize sketch to read from the directory. 
 3. All images with matching names will be updated, in case nothing happens make sure to provide the correct path.
 

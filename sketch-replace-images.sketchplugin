@@ -7,45 +7,47 @@ var doc = context.document; // the current document (MSDocument)
 var page = [doc currentPage];// the current page (MSPage)
 var layers = [page children]; // A flattened array (NSArray) of all layers in `page`
 
-var relativePath = [doc askForUserInput:"Specify images path relative to document:" initialValue:"../_output/_wireframe/png/"]
+var relativePath = [doc askForUserInput:"Specify images path relative to document:" initialValue:"./"]
 
 var home_folder = "/Users/" + NSUserName();
 var doc_folder = doc.fileURL().toString().stringByDeletingLastPathComponent();
 new AppSandbox().authorize(doc_folder, replaceImages);
 
-// }
-
 function replaceImages()
 {
-  log("replacing images...")
 
+  log("updating images...")
   for (var i=0; i<[layers count]; i++)
   {
     var layer = layers[i];
     if([layer class].toString() == "MSBitmapLayer")
     {
-      var imageName = layer.name() + ".png";
-      var url = [NSURL URLWithString:relativePath relativeToURL:doc.fileURL()];
-      url = [NSURL URLWithString:imageName relativeToURL:url];
-      //log(url.path());
-
-      var fileManager = [NSFileManager defaultManager];
-      if([fileManager fileExistsAtPath:url.path()])
+      // loop through image types
+      var imageTypes = ["png", "jpg", "jpeg"]
+      for (var j in imageTypes)
       {
-        var srcImage = NSImage.alloc().initByReferencingFile(url.path());
+        var imageName = layer.name() + "." + imageTypes[j];
+        var url = [NSURL URLWithString:relativePath relativeToURL:doc.fileURL()];
+        url = [NSURL URLWithString:imageName relativeToURL:url];
 
-        if (srcImage.isValid())
+        var fileManager = [NSFileManager defaultManager];
+        if([fileManager fileExistsAtPath:url.path()])
         {
-          //log(srcImage.isValid() + " //")
-          [layer setIsVisible:false];
-          var imageCollection = [[layer documentData] images];
-          //log(imageCollection);
-          var image = [imageCollection addImage:srcImage convertColourspace:false];
-          //log(image)
-          [layer setPrimitiveImage:image];
-          [layer setIsVisible:true];
+          var srcImage = NSImage.alloc().initByReferencingFile(url.path());
+          if (srcImage.isValid())
+          {
+            log(imageName + " ...will be updated")
+            [layer setIsVisible:false];
+            var imageCollection = [[layer documentData] images];
+            var image = [imageCollection addImage:srcImage convertColourspace:false];
+            [layer setPrimitiveImage:image];
+            [layer setIsVisible:true];
+            break;
+          }
         }
       }
+
     }
   }
+
 }
