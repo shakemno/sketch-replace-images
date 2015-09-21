@@ -1,6 +1,6 @@
 # Sketch Replace Images
 
-A plugin to replace ()as in update) existing images by name in a sketch document.
+A plugin to replace (as in update) existing images by name in a sketch document.
 
 Supported image types: ```png, jpg, jpeg```
 
@@ -8,13 +8,11 @@ Supported image types: ```png, jpg, jpeg```
 
 ##Installation
 
-<!---
 ####Using Sketch Toolbox
 
 1. Install using Sketch Toolbox (recommended)
 2. Install the app from http://sketchtoolbox.com/
 3. Install the plugin using the app.
--->
 
 ####Install from repo
 
