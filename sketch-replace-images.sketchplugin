@@ -8,6 +8,9 @@ var page = [doc currentPage];// the current page (MSPage)
 var layers = [page children]; // A flattened array (NSArray) of all layers in `page`
 
 var relativePath = [doc askForUserInput:"Specify images path relative to document:" initialValue:"./"]
+if (!/\/$/.test(relativePath)) {
+  relativePath = relativePath + "/";
+}
 
 var home_folder = "/Users/" + NSUserName();
 var doc_folder = doc.fileURL().toString().stringByDeletingLastPathComponent();
@@ -28,7 +31,12 @@ function replaceImages()
       {
         var imageName = layer.name() + "." + imageTypes[j];
         var url = [NSURL URLWithString:relativePath relativeToURL:doc.fileURL()];
-        url = [NSURL URLWithString:imageName relativeToURL:url];
+
+        // Do URL escaping on imageName
+        var imageNameForUrl = [NSString stringWithFormat:"%@", imageName];
+        imageNameForUrl = [imageNameForUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+        url = [NSURL URLWithString:imageNameForUrl relativeToURL:url];
 
         var fileManager = [NSFileManager defaultManager];
         if([fileManager fileExistsAtPath:url.path()])
