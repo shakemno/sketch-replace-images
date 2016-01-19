@@ -2,6 +2,7 @@
 
 @import 'sandbox.js'
 
+var sketchVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 var doc = context.document; // the current document (MSDocument)
 
 var page = [doc currentPage];// the current page (MSPage)
@@ -44,12 +45,13 @@ function replaceImages()
           var srcImage = NSImage.alloc().initByReferencingFile(url.path());
           if (srcImage.isValid())
           {
-            log(imageName + " ...will be updated")
-            [layer setIsVisible:false];
-            var imageCollection = [[layer documentData] images];
-            var image = [imageCollection addImage:srcImage convertColourspace:false];
-            [layer setPrimitiveImage:image];
-            [layer setIsVisible:true];
+            var replaceAction = [[doc actionsController] actionWithName:"MSReplaceImageAction"];
+            if ([replaceAction validate])
+            {
+                [replaceAction applyImage:srcImage tolayer:layer];
+            }
+
+            [doc showMessage:"Layer/Image: '"+imageName+"' ...updated."]
             break;
           }
         }

@@ -24,8 +24,8 @@ Supported image types: ```png, jpg, jpeg```
 
 ##Usage
 
-1. Select the plugin from the menu or press ```ctrl + ⇧ + ⌘ + R``` 
-2. Specify relative path to image directory, you'll need to authorize sketch to read from the directory. 
+1. Select the plugin from the menu or press ```ctrl + ⇧ + ⌘ + R```
+2. Specify relative path to image directory, you'll need to authorize sketch to read from the directory.
 3. All images with matching names will be updated, in case nothing happens make sure to provide the correct path.
 
 ---
@@ -33,6 +33,13 @@ Supported image types: ```png, jpg, jpeg```
 ##Credits
 
 - [bomberstudios](https://github.com/bomberstudios) for [sketch-sandbox](https://github.com/bomberstudios/sketch-sandbox)
+
+---
+
+##Changelog
+
+01/19/2016
+Updated to work with Sketch 3.4
 
 ---
 
