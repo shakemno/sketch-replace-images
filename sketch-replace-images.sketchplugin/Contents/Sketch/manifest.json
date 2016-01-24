@@ -24,7 +24,7 @@
     "title" : "Sketch Replace Images"
   },
   "identifier" : "de.shakemno.sketch-replace-images",
-  "version" : "1.0",
+  "version" : "0.4.0",
   "description" : "Sketch 3 plugin to replace (as in update) existing images by name in a sketch document.",
   "authorEmail" : "info@shakemno.de",
   "name" : "Sketch Replace Images"
