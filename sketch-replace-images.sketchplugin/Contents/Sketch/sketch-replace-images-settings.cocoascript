@@ -1,0 +1,64 @@
+@import "sketch-replace-images-defaults.cocoascript";
+
+function createSelect(msg, default_path)
+{
+  var input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 355, 24)];
+  if(default_path != nil)
+    [input setStringValue:default_path];
+  [[input cell] setPlaceholderString:"Set a path relative to the sketch-file location"];
+
+  var alert = [NSAlert alertWithMessageText: msg
+                              defaultButton: "Set"
+                            alternateButton: "Restore default"
+                                otherButton: "Cancel"
+                  informativeTextWithFormat: "The default will look for images from the sketch-file location recursively..."];
+
+  [alert setAccessoryView:input];
+
+  var responseCode = alert.runModal()
+  var sel = input.stringValue()
+
+  return {"responseCode":responseCode, "selection":sel}
+}
+
+function present_error(doc)
+{
+  [doc showMessage:"There seems to be an issue with the path. Please make sure you now what you're doing."];
+}
+
+var onRun = function(context) {
+  var documentName = context.document.displayName();
+  var doc = context.document;
+
+  var defaults = SketchReplaceImagesDefaults.loadDefaults()
+  var choice = createSelect('Set custom look-up path', defaults)
+
+  switch(choice.responseCode) {
+    case 0:
+      SketchReplaceImagesDefaults.clearDefaults()
+      [doc showMessage:"Restored default."];
+      break;
+    case 1:
+      if(choice.selection.length() < 1) {
+        present_error(doc);
+        return;
+      }
+
+      var relativePath = choice.selection
+      if (!/\/$/.test(relativePath)) {
+        relativePath = relativePath + "/";
+      }
+
+      var url = [NSURL URLWithString:relativePath relativeToURL:doc.fileURL()];
+      if(url) {
+        SketchReplaceImagesDefaults.saveDefaults(relativePath)
+        [doc showMessage:'Set path to: "'+relativePath+'"'];
+      } else {
+        present_error(doc)
+      }
+      break;
+    default:
+       [doc showMessage:"Cancelled"];
+      break;
+  }
+};

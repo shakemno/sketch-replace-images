@@ -6,6 +6,14 @@ Supported image types: ```png, jpg, jpeg```
 
 ---
 
+##Changelog
+
+- 01/24/2016 **v0.4.0** `Plugin rewrite:` sketch-file location is now the default and the plugin is recursively looking for images. Added settings to set custom look-up path.
+
+- 01/19/2016 **v0.3.1** Updated to work with Sketch 3.4 [download v0.3.1 zip](https://github.com/shakemno/sketch-replace-images/archive/0.3.1.zip)
+
+---
+
 ##Installation
 
 ####Using Sketch Toolbox
@@ -25,8 +33,8 @@ Supported image types: ```png, jpg, jpeg```
 ##Usage
 
 1. Select the plugin from the menu or press ```ctrl + ⇧ + ⌘ + R```
-2. Specify relative path to image directory, you'll need to authorize sketch to read from the directory.
-3. All images with matching names will be updated, in case nothing happens make sure to provide the correct path.
+2. By default the plugin is recurively looking for image from your sketch-file location. There is also a **settings** option, where you can specify a custom path to a directory containing your resources, needs to be relative to sketch-file location. (If you are still using the AppStore version, you'll need to authorize sketch to read from the directory)
+3. All images with **matching** names *(layer-name equal image-name)* will be updated, in case nothing happens make sure to provide the correct path.
 
 ---
 
@@ -36,16 +44,9 @@ Supported image types: ```png, jpg, jpeg```
 
 ---
 
-##Changelog
-
-01/19/2016
-Updated to work with Sketch 3.4
-
----
-
 ##License
 
-Copyright (c) 2015 shakemno
+Copyright (c) 2016 shakemno
 
 MIT License
 

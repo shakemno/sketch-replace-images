@@ -1,0 +1,105 @@
+@import "sketch-replace-images-defaults.cocoascript";
+@import 'sandbox.js';
+
+var sandbox;
+
+var onRun = function(context)
+{
+  var doc = context.document;
+  var doc_folder = doc.fileURL().toString().stringByDeletingLastPathComponent();
+
+  sandbox = new AppSandbox().authorize(doc_folder, function(){
+    replaceImages(context, doc, doc_folder);
+  });
+}
+
+function replaceImages(context, doc, doc_folder)
+{
+  log("SketchReplaceImages - trying to update images...")
+
+  var relativePath = doc_folder;
+  if (!/\/$/.test(relativePath)) {
+    relativePath = relativePath + "/";
+  }
+
+  var defaults = SketchReplaceImagesDefaults.loadDefaults()
+  if(defaults) {
+    relativePath = defaults
+  }
+
+  var url = [NSURL URLWithString:relativePath relativeToURL:doc.fileURL()];
+  var fileManager = [NSFileManager defaultManager];
+  var direnum = [fileManager enumeratorAtPath:url.path()];
+  var filename;
+
+  var page = [doc currentPage];
+  var layers = [page children];
+
+  var imageTypes = [NSArray arrayWithObjects:"png", "jpg", "jpeg"];
+  var images_available = [NSMutableDictionary dictionary];
+  var images_replaced = [];
+
+  log("collecting available images...")
+  while ((filename = [direnum nextObject] ))
+  {
+    var basefileName = filename.toString().lastPathComponent();
+    var pathExtension = basefileName.pathExtension()
+
+    if(imageTypes.containsObject(pathExtension))
+    {
+      [images_available setObject:filename forKey:basefileName];
+    }
+  }
+
+  log("replace images...")
+  var images_available_keys = images_available.allKeys();
+  for (var i=0; i<[layers count]; i++)
+  {
+    var layer = layers[i];
+    if([layer class].toString() == "MSBitmapLayer")
+    {
+      // loop through image types
+      for (var j = 0; j < [imageTypes count]; j++)
+      {
+        var type = [imageTypes objectAtIndex:j];
+        var imageName = layer.name() + "." + type;
+
+        if( images_available_keys.containsObject(imageName)) )
+        {
+          // Do URL escaping on imageName
+          var imageNameForUrl = images_available.objectForKey(imageName);
+          imageNameForUrl = [imageNameForUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+          url = [NSURL URLWithString:imageNameForUrl relativeToURL:url];
+
+          if([fileManager fileExistsAtPath:url.path()])
+          {
+            var srcImage = NSImage.alloc().initByReferencingFile(url.path());
+            if (srcImage.isValid())
+            {
+              var replaceAction = [[doc actionsController] actionWithName:"MSReplaceImageAction"];
+              if(true) //([replaceAction validate])
+              {
+                  [replaceAction applyImage:srcImage tolayer:layer];
+                  images_replaced.push(imageName);
+                  continue; // we'll only pick the first match...
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+
+  // check if we updated any images, report accordingly
+  if(images_replaced.length > 0)
+  {
+    [doc showMessage:""+images_replaced.length+" images updated."];
+  }
+  else
+  {
+    [doc showMessage:"Sorry, couldn't update images..."];
+  }
+
+};
