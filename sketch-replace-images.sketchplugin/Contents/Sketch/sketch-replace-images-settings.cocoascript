@@ -1,24 +1,33 @@
 @import "sketch-replace-images-defaults.cocoascript";
 
-function createSelect(msg, default_path)
+function createPanel(msg, default_path)
 {
-  var input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 355, 24)];
-  if(default_path != nil)
-    [input setStringValue:default_path];
-  [[input cell] setPlaceholderString:"Set a path relative to the sketch-file location"];
+  var openPanel;
 
-  var alert = [NSAlert alertWithMessageText: msg
-                              defaultButton: "Set"
-                            alternateButton: "Restore default"
-                                otherButton: "Cancel"
-                  informativeTextWithFormat: "The default will look for images from the sketch-file location recursively..."];
+  var okButton = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 0, 0)]
+  [okButton setTitle:"Restore default"]
+  [okButton setCOSJSTargetFunction:function(sender) {
+    [NSApp stopModal];
+  }];
+  [okButton setBezelStyle:NSRoundedBezelStyle];
 
-  [alert setAccessoryView:input];
+  openPanel = [NSOpenPanel openPanel]
+  [openPanel setCanChooseDirectories:true]
+  [openPanel setCanChooseFiles:false]
+  [openPanel setCanCreateDirectories:true]
+  if(default_path != null)
+    [openPanel setDirectoryURL:[NSURL fileURLWithPath:default_path]]
+  else
+    [openPanel setDirectoryURL:[NSURL fileURLWithPath:NSHomeDirectory().stringByAppendingString("/Documents/")]]
 
-  var responseCode = alert.runModal()
-  var sel = input.stringValue()
+  [openPanel setPrompt:"Set path"]
+  [openPanel setMessage:msg]
+  [openPanel setAccessoryView:okButton];
 
-  return {"responseCode":responseCode, "selection":sel}
+  var responseCode = [openPanel runModal]
+  var url = [[openPanel URL] path];
+
+  return {"responseCode":responseCode, "selection":url}
 }
 
 function present_error(doc)
@@ -27,14 +36,14 @@ function present_error(doc)
 }
 
 var onRun = function(context) {
+
   var documentName = context.document.displayName();
   var doc = context.document;
-
   var defaults = SketchReplaceImagesDefaults.loadDefaults()
-  var choice = createSelect('Set custom look-up path', defaults)
+  var choice = createPanel('Select a custom look-up directory...', defaults)
 
   switch(choice.responseCode) {
-    case 0:
+    case -1000:
       SketchReplaceImagesDefaults.clearDefaults()
       [doc showMessage:"Restored default."];
       break;
