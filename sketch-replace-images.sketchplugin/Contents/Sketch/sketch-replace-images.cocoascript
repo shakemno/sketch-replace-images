@@ -22,15 +22,20 @@ function replaceImages(context, doc, doc_folder)
     relativePath = relativePath + "/";
   }
 
+  var url = [NSURL URLWithString:relativePath relativeToURL:doc.fileURL()];
+
   var defaults = SketchReplaceImagesDefaults.loadDefaults()
   if(defaults) {
     relativePath = defaults
+    url = [NSURL URLWithString:relativePath];
   }
 
-  var url = [NSURL URLWithString:relativePath relativeToURL:doc.fileURL()];
+  log("url: "+url)
+
   var fileManager = [NSFileManager defaultManager];
   var direnum = [fileManager enumeratorAtPath:url.path()];
   var filename;
+  var fileURL;
 
   var page = [doc currentPage];
   var layers = [page children];
@@ -40,6 +45,7 @@ function replaceImages(context, doc, doc_folder)
   var images_replaced = [];
 
   log("collecting available images...")
+
   while ((filename = [direnum nextObject] ))
   {
     var basefileName = filename.toString().lastPathComponent();
@@ -52,6 +58,7 @@ function replaceImages(context, doc, doc_folder)
   }
 
   log("replace images...")
+
   var images_available_keys = images_available.allKeys();
   for (var i=0; i<[layers count]; i++)
   {
@@ -70,19 +77,25 @@ function replaceImages(context, doc, doc_folder)
           var imageNameForUrl = images_available.objectForKey(imageName);
           imageNameForUrl = [imageNameForUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-          url = [NSURL URLWithString:imageNameForUrl relativeToURL:url];
-
-          if([fileManager fileExistsAtPath:url.path()])
+          if(defaults) {
+            fileURL = [NSURL URLWithString:(relativePath+imageNameForUrl)]
+          }
+          else
           {
-            var srcImage = NSImage.alloc().initByReferencingFile(url.path());
+            fileURL = [NSURL URLWithString:imageNameForUrl relativeToURL:url];
+          }
+
+          if([fileManager fileExistsAtPath:fileURL.path()])
+          {
+            var srcImage = NSImage.alloc().initByReferencingFile(fileURL.path());
             if (srcImage.isValid())
             {
               var replaceAction = [[doc actionsController] actionWithName:"MSReplaceImageAction"];
               if(true) //([replaceAction validate])
               {
-                  [replaceAction applyImage:srcImage tolayer:layer];
-                  images_replaced.push(imageName);
-                  continue; // we'll only pick the first match...
+                [replaceAction applyImage:srcImage tolayer:layer];
+                images_replaced.push(imageName);
+                break; // we'll only pick the first match...
               }
             }
           }

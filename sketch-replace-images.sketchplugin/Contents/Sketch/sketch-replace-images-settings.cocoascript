@@ -25,7 +25,7 @@ function createPanel(msg, default_path)
   [openPanel setAccessoryView:okButton];
 
   var responseCode = [openPanel runModal]
-  var url = [[openPanel URL] path];
+  var url = [[openPanel URL] absoluteString];
 
   return {"responseCode":responseCode, "selection":url}
 }
@@ -58,7 +58,7 @@ var onRun = function(context) {
         relativePath = relativePath + "/";
       }
 
-      var url = [NSURL URLWithString:relativePath relativeToURL:doc.fileURL()];
+      var url = [NSURL URLWithString:relativePath];
       if(url) {
         SketchReplaceImagesDefaults.saveDefaults(relativePath)
         [doc showMessage:'Set path to: "'+relativePath+'"'];
