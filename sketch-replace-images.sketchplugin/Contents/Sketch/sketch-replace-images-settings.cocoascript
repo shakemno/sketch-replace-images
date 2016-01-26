@@ -32,7 +32,7 @@ function createPanel(msg, default_path)
 
 function present_error(doc)
 {
-  [doc showMessage:"There seems to be an issue with the path. Please make sure you now what you're doing."];
+  [doc showMessage:"There seems to be an issue with the path. Please make sure you know what you're doing."];
 }
 
 var onRun = function(context) {
