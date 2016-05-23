@@ -8,6 +8,8 @@ Supported image types: ```png, jpg, jpeg```
 
 ##Changelog
 
+- 05/23/2016 **v0.4.2** Fixed minor issue with Sketch 3.8.1
+
 - 01/25/2016 **v0.4.1** Replaced the manual path input with the more convenient NSOpenPanel
 
 - 01/24/2016 **v0.4.0** `Plugin rewrite:` sketch-file location is now the default and the plugin is recursively looking for images. Added settings to set custom look-up path.

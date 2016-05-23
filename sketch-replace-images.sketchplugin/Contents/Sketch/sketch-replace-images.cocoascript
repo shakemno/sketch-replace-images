@@ -90,7 +90,7 @@ function replaceImages(context, doc, doc_folder)
             var srcImage = NSImage.alloc().initByReferencingFile(fileURL.path());
             if (srcImage.isValid())
             {
-              var replaceAction = [[doc actionsController] actionWithName:"MSReplaceImageAction"];
+              var replaceAction = MSReplaceImageAction.alloc().init();
               if(true) //([replaceAction validate])
               {
                 [replaceAction applyImage:srcImage tolayer:layer];
