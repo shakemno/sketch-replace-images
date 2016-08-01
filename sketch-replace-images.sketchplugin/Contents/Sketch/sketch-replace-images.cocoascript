@@ -90,10 +90,15 @@ function replaceImages(context, doc, doc_folder)
             var srcImage = NSImage.alloc().initByReferencingFile(fileURL.path());
             if (srcImage.isValid())
             {
+              var old_width = layer.frame().width();
+              var old_height = layer.frame().height();
+
               var replaceAction = MSReplaceImageAction.alloc().init();
               if(true) //([replaceAction validate])
               {
                 [replaceAction applyImage:srcImage tolayer:layer];
+                layer.frame().setWidth(old_width);
+                layer.frame().setHeight(old_height);
                 images_replaced.push(imageName);
                 break; // we'll only pick the first match...
               }

@@ -8,6 +8,8 @@ Supported image types: ```png, jpg, jpeg```
 
 ##Changelog
 
+- 08/01/2016 **v0.4.3** Keep size of layer when replacing images, this is not the default behaviour of the replace action from Sketch. The default will resize to maximum images size and only keep resized size if scaled down. (Sketch 39.1)
+
 - 05/23/2016 **v0.4.2** Fixed minor issue with Sketch 3.8.1
 
 - 01/25/2016 **v0.4.1** Replaced the manual path input with the more convenient NSOpenPanel
