@@ -6,7 +6,7 @@ Supported image types: ```png, jpg, jpeg```
 
 ---
 
-##Changelog
+## Changelog
 
 - 08/01/2016 **v0.4.3** Keep size of layer when replacing images, this is not the default behaviour of the replace action from Sketch. The default will resize to maximum images size and only keep resized size if scaled down. (Sketch 39.1)
 
@@ -20,15 +20,15 @@ Supported image types: ```png, jpg, jpeg```
 
 ---
 
-##Installation
+## Installation
 
-####Using Sketch Toolbox
+#### Using Sketch Toolbox
 
 1. Install using Sketch Toolbox (recommended)
 2. Install the app from http://sketchtoolbox.com/
 3. Install the plugin using the app.
 
-####Install from repo
+#### Install from repo
 
 1. Download the latest *.zip and unzip
 2. In Sketch reveal your plugins folder in ```Plugins > Reveal Plugins Folder...```
@@ -36,7 +36,7 @@ Supported image types: ```png, jpg, jpeg```
 
 ---
 
-##Usage
+## Usage
 
 1. Select the plugin from the menu or press ```ctrl + ⇧ + ⌘ + R```
 2. By default the plugin is recurively looking for image from your sketch-file location. There is also a **settings** option, where you can specify a custom path to a directory containing your resources. (If you are still using the AppStore version, you'll need to authorize sketch to read from the directory)
@@ -47,13 +47,13 @@ If you define a custom path it will persist, so if you start a new project or wa
 
 ---
 
-##Credits
+## Credits
 
 - [bomberstudios](https://github.com/bomberstudios) for [sketch-sandbox](https://github.com/bomberstudios/sketch-sandbox)
 
 ---
 
-##License
+## License
 
 Copyright (c) 2016 shakemno
 
