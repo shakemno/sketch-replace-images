@@ -6,7 +6,19 @@ Supported image types: ```png, jpg, jpeg```
 
 ---
 
+## Usage
+
+1. Select the plugin from the menu or press ```ctrl + ⇧ + ⌘ + R```
+2. By default the plugin is recursively looking for image from your sketch-file location. There is also a **settings** option, where you can specify a custom path to a directory containing your resources. (If you are still using the AppStore version, you'll need to authorize sketch to read from the directory)
+3. All images with **matching** names *(layer-name equal image-name)* will be updated, in case nothing happens make sure to provide the correct path.
+
+If you define a custom path it will persist, so if you start a new project or want to use the default – you'll need to reset it first, there is a **restore default** option in the settings panel.
+
+---
+
 ## Changelog
+
+- 25/11/2017 **v0.5.0** Rewritten to be compliant with the Sketch _45+_ plugin system
 
 - 08/01/2016 **v0.4.3** Keep size of layer when replacing images, this is not the default behaviour of the replace action from Sketch. The default will resize to maximum images size and only keep resized size if scaled down. (Sketch 39.1)
 
@@ -20,36 +32,7 @@ Supported image types: ```png, jpg, jpeg```
 
 ---
 
-## Installation
-
-#### Using Sketch Toolbox
-
-1. Install using Sketch Toolbox (recommended)
-2. Install the app from http://sketchtoolbox.com/
-3. Install the plugin using the app.
-
-#### Install from repo
-
-1. Download the latest *.zip and unzip
-2. In Sketch reveal your plugins folder in ```Plugins > Reveal Plugins Folder...```
-3. Move the ``` sketch-replace-images``` folder to ```Plugins```
-
----
-
-## Usage
-
-1. Select the plugin from the menu or press ```ctrl + ⇧ + ⌘ + R```
-2. By default the plugin is recurively looking for image from your sketch-file location. There is also a **settings** option, where you can specify a custom path to a directory containing your resources. (If you are still using the AppStore version, you'll need to authorize sketch to read from the directory)
-3. All images with **matching** names *(layer-name equal image-name)* will be updated, in case nothing happens make sure to provide the correct path.
-
-If you define a custom path it will persist, so if you start a new project or want to use the default – you'll need to reset it first, there is a **restore default** option in the settings panel.
-
-
----
-
-## Credits
-
-- [bomberstudios](https://github.com/bomberstudios) for [sketch-sandbox](https://github.com/bomberstudios/sketch-sandbox)
+_This plugin was created using `skpm`. For a detailed explanation on how things work, checkout the [skpm Readme](https://github.com/skpm/skpm/blob/master/README.md)._
 
 ---
 

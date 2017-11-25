@@ -1,0 +1,21 @@
+{
+  "name": "sketch-replace-images",
+  "version": "0.5.0",
+  "engines": {
+    "sketch": ">=3.0"
+  },
+  "skpm": {
+    "name": "sketch-replace-images",
+    "manifest": "src/manifest.json",
+    "main": "sketch-replace-images.sketchplugin"
+  },
+  "scripts": {
+    "build": "skpm-build",
+    "watch": "skpm-build --watch",
+    "start": "skpm-build --watch --run",
+    "postinstall": "npm run build && skpm-link"
+  },
+  "devDependencies": {
+    "@skpm/builder": "^0.2.0"
+  }
+}

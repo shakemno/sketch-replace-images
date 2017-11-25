@@ -1,0 +1,31 @@
+{
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands" : [
+    {
+      "script" : "./sketch-replace-images.js",
+      "shortcut" : "shift ctrl command r",
+      "name" : "Sketch Replace Images",
+      "identifier" : "sketch-replace-images"
+    },
+    {
+      "script" : "./sketch-replace-images-settings.js",
+      "shortcut" : "",
+      "name" : "Sketch Replace Images Settings",
+      "identifier" : "sketch-replace-images-settings"
+    }
+  ],
+  "menu" : {
+    "items" : [
+      "sketch-replace-images",
+      "sketch-replace-images-settings"
+    ],
+    "title" : "Sketch Replace Images"
+  },
+  "identifier" : "de.shakemno.sketch-replace-images",
+  "version" : "0.5.0",
+  "description" : "Sketch 45+ plugin to replace (as in update) existing images by name in a sketch document.",
+  "author" : "shakemno",
+  "authorEmail" : "info@shakemno.de",
+  "name" : "Sketch Replace Images"
+}
