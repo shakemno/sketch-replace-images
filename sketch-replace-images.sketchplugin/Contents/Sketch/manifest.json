@@ -22,7 +22,7 @@
     ],
     "title": "Sketch Replace Images"
   },
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Sketch 45+ plugin to replace (as in update) existing images by name in a sketch document.",
   "name": "Sketch Replace Images",
   "disableCocoaScriptPreprocessor": true,

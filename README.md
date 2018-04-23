@@ -18,6 +18,8 @@ If you define a custom path it will persist, so if you start a new project or wa
 
 ## Changelog
 
+- 23/04/2018 **v0.5.1** Updated skpm publish setup
+
 - 25/11/2017 **v0.5.0** Rewritten to be compliant with the Sketch _45+_ plugin system
 
 - 08/01/2016 **v0.4.3** Keep size of layer when replacing images, this is not the default behaviour of the replace action from Sketch. The default will resize to maximum images size and only keep resized size if scaled down. (Sketch 39.1)
