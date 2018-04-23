@@ -3,6 +3,7 @@
   "version": "0.5.0",
   "author": "shakemno",
   "license": "Apache-2.0",
+  "description" : "Sketch 45+ plugin to replace (as in update) existing images by name in a sketch document.",
   "engines": {
     "sketch": ">=3.0"
   },
@@ -25,6 +26,7 @@
     "@skpm/builder": "^0.2.12"
   },
   "dependencies": {
-    "npm": "^5.8.0"
+    "npm": "^5.8.0",
+    "skpm": "^1.0.15"
   }
 }
