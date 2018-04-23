@@ -77,6 +77,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports["default"] = function (context) {
+  var fileManager = NSFileManager.defaultManager();
   var doc = context.document;
   var doc_folder = doc.fileURL().toString().stringByDeletingLastPathComponent();
 
@@ -95,9 +96,15 @@ exports["default"] = function (context) {
     url = NSURL.URLWithString(relativePath);
   }
 
+  var isValidPath = fileManager.fileExistsAtPath(url.path());
+  log("isValidPath: " + isValidPath);
+  if (isValidPath === 0) {
+    doc.showMessage("Sorry, can't find a valid directory. Try (re-)setting the path url.");
+    return;
+  }
+
   log("url: " + url);
 
-  var fileManager = NSFileManager.defaultManager();
   var direnum = fileManager.enumeratorAtPath(url.path());
   var filename;
   var fileURL;

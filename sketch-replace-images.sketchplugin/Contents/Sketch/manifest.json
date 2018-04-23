@@ -29,5 +29,5 @@
   "authorEmail": "info@shakemno.de",
   "name": "Sketch Replace Images",
   "disableCocoaScriptPreprocessor": true,
-  "appcast": "https://raw.githubusercontent.com//master/.appcast.xml"
+  "appcast": "https://raw.githubusercontent.com/shakemno/sketch-replace-images/master/.appcast.xml"
 }
