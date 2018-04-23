@@ -22,12 +22,10 @@
     ],
     "title": "Sketch Replace Images"
   },
-  "identifier": "de.shakemno.sketch-replace-images",
   "version": "0.5.0",
   "description": "Sketch 45+ plugin to replace (as in update) existing images by name in a sketch document.",
-  "author": "shakemno",
-  "authorEmail": "info@shakemno.de",
   "name": "Sketch Replace Images",
   "disableCocoaScriptPreprocessor": true,
-  "appcast": "https://raw.githubusercontent.com/shakemno/sketch-replace-images/master/.appcast.xml"
+  "appcast": "https://raw.githubusercontent.com/shakemno/sketch-replace-images/master/.appcast.xml",
+  "author": "shakemno"
 }

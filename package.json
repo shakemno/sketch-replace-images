@@ -1,9 +1,16 @@
 {
   "name": "sketch-replace-images",
   "version": "0.5.0",
-  "author": "shakemno",
   "license": "Apache-2.0",
-  "description" : "Sketch 45+ plugin to replace (as in update) existing images by name in a sketch document.",
+  "description": "Sketch 45+ plugin to replace (as in update) existing images by name in a sketch document.",
+  "identifier": "de.shakemno.sketch-replace-images",
+  "author": "shakemno",
+  "authorEmail": "info@shakemno.de",
+  "bugs": "https://github.com/shakemno/sketch-replace-images/issues",
+  "contributors": "shakemno",
+  "keywords": [
+    "sketch, plugin, replace images, replace"
+  ],
   "engines": {
     "sketch": ">=3.0"
   },
@@ -12,7 +19,7 @@
     "url": "git@github.com:shakemno/sketch-replace-images.git"
   },
   "skpm": {
-    "name": "sketch-replace-images",
+    "name": "Sketch Replace Images",
     "manifest": "src/manifest.json",
     "main": "sketch-replace-images.sketchplugin"
   },
@@ -23,9 +30,7 @@
     "postinstall": "npm run build && skpm-link"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.2.12"
-  },
-  "dependencies": {
+    "@skpm/builder": "^0.2.12",
     "npm": "^5.8.0",
     "skpm": "^1.0.15"
   }
