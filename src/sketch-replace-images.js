@@ -21,7 +21,7 @@ export default function(context) {
   }
 
   var isValidPath = fileManager.fileExistsAtPath(url.path())
-  log("isValidPath: "+isValidPath);
+  console.log("isValidPath: "+isValidPath);
 
   if (isValidPath === 0) 
   {
@@ -29,7 +29,7 @@ export default function(context) {
     return;
   }
 
-  log("url: "+url);
+  console.log("url: "+url);
 
   var direnum = fileManager.enumeratorAtPath(url.path());
   var filename;
@@ -42,7 +42,7 @@ export default function(context) {
   var images_available = NSMutableDictionary.dictionary();
   var images_replaced = [];
 
-  log("collecting available images...");
+  console.log("collecting available images...");
 
   while ((filename = direnum.nextObject() ))
   {
@@ -55,7 +55,7 @@ export default function(context) {
     }
   }
 
-  log("updating images...");
+  console.log("updating images...");
 
   var images_available_keys = images_available.allKeys();
   for (var i=0; i<layers.count(); i++)
