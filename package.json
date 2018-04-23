@@ -1,12 +1,14 @@
 {
   "name": "sketch-replace-images",
   "version": "0.5.0",
+  "author": "shakemno",
+  "license": "Apache-2.0",
   "engines": {
     "sketch": ">=3.0"
   },
   "repository": {
-  "type": "git",
-  "url": "git@github.com:shakemno/sketch-replace-images.git"
+    "type": "git",
+    "url": "git@github.com:shakemno/sketch-replace-images.git"
   },
   "skpm": {
     "name": "sketch-replace-images",
@@ -20,6 +22,9 @@
     "postinstall": "npm run build && skpm-link"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.2.0"
+    "@skpm/builder": "^0.2.12"
+  },
+  "dependencies": {
+    "npm": "^5.8.0"
   }
 }
