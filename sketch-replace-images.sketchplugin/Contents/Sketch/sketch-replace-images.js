@@ -1,1 +1,242 @@
-var that=this;function __skpm_run(t,e){that.context=e;var r=function(t){var e={};function r(n){if(e[n])return e[n].exports;var a=e[n]={i:n,l:!1,exports:{}};return t[n].call(a.exports,a,a.exports,r),a.l=!0,a.exports}return r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:n})},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="",r(r.s=1)}([function(t,e,r){(function(e,r){if(!e._skpmEnabled){function n(t,r){var n=Array.prototype.slice.call(r);n.forEach(function(t){try{log(e._skpmPrefix+function(){for(var t="",e=0;e<a;e++)t+="  ";a>0&&(t+="| ");return t}()+t)}catch(e){log(t)}})}e._skpmPrefix="console> ";var a=0;var i=e.group;e.group=function(){i&&i.apply(this,arguments),a+=1};var o=e.groupCollapsed;e.groupCollapsed=function(){o&&o.apply(this,arguments),a+=1};var s=e.groupEnd;e.groupEnd=function(){s&&s.apply(this,arguments),(a-=1)<0&&(a=0)};var l={},u=e.count;e.count=function(t){return l[t=void 0!==t?t:"Global"]=(l[t]||0)+1,u&&u.apply(this,arguments),n(0,[t+": "+l[t]])};var c={},f=e.time;e.time=function(t){if(f&&f.apply(this,arguments),c[t=void 0!==t?t:"default"])return n(0,['Timer "'+t+'" already exists']);c[t]=Date.now()};var p=e.timeEnd;e.timeEnd=function(t){if(p&&p.apply(this,arguments),!c[t=void 0!==t?t:"default"])return n(0,['Timer "'+t+'" does not exist']);var e=Date.now()-c[t];return delete c[t],n(0,[t+": "+e/1e3+"ms"])};var d=e.log;e.log=function(){return d&&d.apply(this,arguments),n(0,arguments)};var g=e.warn;e.warn=function(){return g&&g.apply(this,arguments),n(0,arguments)};var h=e.error;e.error=function(){return h&&h.apply(this,arguments),n(0,arguments)};var v=e.assert;e.assert=function(t,e){if(v&&v.apply(this,arguments),!t)return n(0,[e])};var y=e.info;e.info=function(){return y&&y.apply(this,arguments),n(0,arguments)};var m=e.clear;e.clear=function(){m&&m()},e._skpmEnabled=!0,(void 0!==r?r:this).console=e}t.exports=e}).call(e,r(0),r(2))},function(t,e,r){(function(t){Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e){var r=NSFileManager.defaultManager(),a=e.document,i=a.fileURL().toString().stringByDeletingLastPathComponent();log("SketchReplaceImages - trying to update images...");var o=i;/\/$/.test(o)||(o+="/");var s=NSURL.URLWithString_relativeToURL(o,a.fileURL()),l=n.loadDefaults();l&&(o=l,s=NSURL.URLWithString(o));var u=r.fileExistsAtPath(s.path());if(t.log("isValidPath: "+u),0!==u){t.log("url: "+s);var c,f,p=r.enumeratorAtPath(s.path()),d=a.currentPage().children(),g=NSArray.arrayWithArray(["png","jpg","jpeg"]),h=NSMutableDictionary.dictionary(),v=[];for(t.log("collecting available images...");c=p.nextObject();){var y=c.toString().lastPathComponent(),m=y.pathExtension();g.containsObject(m)&&h.setObject_forKey(c,y)}t.log("updating images...");for(var S=h.allKeys(),U=0;U<d.count();U++){var b=d[U];if("MSBitmapLayer"==b.class().toString())for(var _=0;_<g.count();_++){var x=g.objectAtIndex(_),D=b.name()+"."+x;if(S.containsObject(D)){var R=h.objectForKey(D);if(R=R.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding),f=l?NSURL.URLWithString(o+R):NSURL.URLWithString_relativeToURL(R,s),r.fileExistsAtPath(f.path())){var j=NSImage.alloc().initByReferencingFile(f.path());if(j.isValid()){var L=b.frame().width(),N=b.frame().height();MSReplaceImageAction.alloc().init().applyImage_tolayer(j,b),b.frame().setWidth(L),b.frame().setHeight(N),v.push(D);break}}}}}v.length>0?a.showMessage(v.length+" images updated."):a.showMessage("Sorry, couldn't update images...")}else a.showMessage("Sorry, can't find a valid directory. Try (re-)setting the path url.")};var n=r(3)}).call(e,r(0))},function(t,e){var r;r=function(){return this}();try{r=r||Function("return this")()||(0,eval)("this")}catch(t){"object"==typeof window&&(r=window)}t.exports=r},function(t,e){var r="de.shakemno.sketch-replace-images.defaultsKey";t.exports={loadDefaults:function(){return function(){return NSUserDefaults.standardUserDefaults().objectForKey(r)}}(),saveDefaults:function(){return function(t){NSUserDefaults.standardUserDefaults().setObject_forKey(t,r),NSUserDefaults.standardUserDefaults().synchronize()}}(),clearDefaults:function(){return function(){NSUserDefaults.standardUserDefaults().removeObjectForKey(r),NSUserDefaults.standardUserDefaults().synchronize()}}()}}]);"default"===t&&"function"==typeof r?r(e):r[t](e)}that.onRun=__skpm_run.bind(this,"default");
+var that = this;
+function __skpm_run (key, context) {
+  that.context = context;
+
+var exports =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/sketch-replace-images.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/sketch-replace-images-defaults.js":
+/*!***********************************************!*\
+  !*** ./src/sketch-replace-images-defaults.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var kDefaultsKey = "de.shakemno.sketch-replace-images.defaultsKey";
+module.exports = {
+  loadDefaults: function loadDefaults() {
+    return NSUserDefaults.standardUserDefaults().objectForKey(kDefaultsKey);
+  },
+  saveDefaults: function saveDefaults(path) {
+    NSUserDefaults.standardUserDefaults().setObject_forKey(path, kDefaultsKey);
+    NSUserDefaults.standardUserDefaults().synchronize();
+  },
+  clearDefaults: function clearDefaults() {
+    NSUserDefaults.standardUserDefaults().removeObjectForKey(kDefaultsKey);
+    NSUserDefaults.standardUserDefaults().synchronize();
+  }
+};
+
+/***/ }),
+
+/***/ "./src/sketch-replace-images.js":
+/*!**************************************!*\
+  !*** ./src/sketch-replace-images.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var SketchReplaceImagesDefaults = __webpack_require__(/*! ./sketch-replace-images-defaults */ "./src/sketch-replace-images-defaults.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function (context) {
+  var fileManager = NSFileManager.defaultManager();
+  var doc = context.document;
+  var doc_folder = doc.fileURL().toString().stringByDeletingLastPathComponent();
+  log("SketchReplaceImages - trying to update images...");
+  var relativePath = doc_folder;
+
+  if (!/\/$/.test(relativePath)) {
+    relativePath = relativePath + "/";
+  }
+
+  var url = NSURL.URLWithString_relativeToURL(relativePath, doc.fileURL());
+  var defaults = SketchReplaceImagesDefaults.loadDefaults();
+
+  if (defaults) {
+    relativePath = defaults;
+    url = NSURL.URLWithString(relativePath);
+  }
+
+  var isValidPath = fileManager.fileExistsAtPath(url.path());
+  console.log("isValidPath: " + isValidPath);
+
+  if (isValidPath === 0) {
+    doc.showMessage("Sorry, can't find a valid directory. Try (re-)setting the path url.");
+    return;
+  }
+
+  console.log("url: " + url);
+  var direnum = fileManager.enumeratorAtPath(url.path());
+  var filename;
+  var fileURL;
+  var page = doc.currentPage();
+  var layers = page.children();
+  var imageTypes = NSArray.arrayWithArray(["png", "jpg", "jpeg"]);
+  var images_available = NSMutableDictionary.dictionary();
+  var images_replaced = [];
+  console.log("collecting available images...");
+
+  while (filename = direnum.nextObject()) {
+    var basefileName = filename.toString().lastPathComponent();
+    var pathExtension = basefileName.pathExtension();
+
+    if (imageTypes.containsObject(pathExtension)) {
+      images_available.setObject_forKey(filename, basefileName);
+    }
+  }
+
+  console.log("updating images...");
+  var images_available_keys = images_available.allKeys();
+
+  for (var i = 0; i < layers.count(); i++) {
+    var layer = layers[i];
+
+    if (layer.class().toString() == "MSBitmapLayer") {
+      // loop through image types
+      for (var j = 0; j < imageTypes.count(); j++) {
+        var type = imageTypes.objectAtIndex(j);
+        var imageName = layer.name() + "." + type;
+
+        if (images_available_keys.containsObject(imageName)) {
+          // Do URL escaping on imageName
+          var imageNameForUrl = images_available.objectForKey(imageName);
+          imageNameForUrl = imageNameForUrl.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding);
+
+          if (defaults) {
+            fileURL = NSURL.URLWithString(relativePath + imageNameForUrl);
+          } else {
+            fileURL = NSURL.URLWithString_relativeToURL(imageNameForUrl, url);
+          }
+
+          if (fileManager.fileExistsAtPath(fileURL.path())) {
+            var srcImage = NSImage.alloc().initByReferencingFile(fileURL.path());
+
+            if (srcImage.isValid()) {
+              var old_width = layer.frame().width();
+              var old_height = layer.frame().height();
+              var replaceAction = MSReplaceImageAction.alloc().init();
+
+              if (true) //([replaceAction validate])
+                {
+                  replaceAction.applyImage_tolayer(srcImage, layer);
+                  layer.frame().setWidth(old_width);
+                  layer.frame().setHeight(old_height);
+                  images_replaced.push(imageName);
+                  break; // we'll only pick the first match...
+                }
+            }
+          }
+        }
+      }
+    }
+  } // check if we updated any images, report accordingly
+
+
+  if (images_replaced.length > 0) {
+    doc.showMessage("" + images_replaced.length + " images updated.");
+  } else {
+    doc.showMessage("Sorry, couldn't update images...");
+  }
+});
+;
+
+/***/ })
+
+/******/ });
+  if (key === 'default' && typeof exports === 'function') {
+    exports(context);
+  } else {
+    exports[key](context);
+  }
+}
+that['onRun'] = __skpm_run.bind(this, 'default')
+
+//# sourceMappingURL=sketch-replace-images.js.map
