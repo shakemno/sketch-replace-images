@@ -18,6 +18,8 @@ If you define a custom path it will persist, so if you start a new project or wa
 
 ## Changelog
 
+- 25/10/2018 **v0.5.2** Update dependencies
+
 - 23/04/2018 **v0.5.1** Updated skpm publish setup
 
 - 25/11/2017 **v0.5.0** Rewritten to be compliant with the Sketch _45+_ plugin system
