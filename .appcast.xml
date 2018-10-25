@@ -6,16 +6,24 @@
     <description>Sketch 45+ plugin to replace (as in update) existing images by name in a sketch document.</description>
     <language>en</language>
     <item>
-      <enclosure url="https://github.com/shakemno/sketch-replace-images/releases/download/v0.5.2/sketch-replace-images.sketchplugin.zip" sparkle:version="0.5.2"/>
+      <title>Version 0.5.2</title>
+      <description>
+            <![CDATA[
+            <ul>
+            <li> v0.5.2 Update dependencies</li>
+            </ul>
+          ]]>
+      </description>
+      <enclosure url="https://github.com/shakemno/sketch-replace-images/releases/download/v0.5.2/sketch-replace-images.sketchplugin.zip" sparkle:version="0.5.1"/>
     </item>
     <item>
       <title>Version 0.5.1</title>
       <description>
-            
-            &lt;ul&gt;
-            &lt;li&gt; v0.5.1 Updated skpm publish setup&lt;/li&gt;
-            &lt;/ul&gt;
-          
+            <![CDATA[
+            <ul>
+            <li> v0.5.1 Updated skpm publish setup</li>
+            </ul>
+          ]]>
       </description>
       <enclosure url="https://github.com/shakemno/sketch-replace-images/releases/download/v0.5.1/sketch-replace-images.sketchplugin.zip" sparkle:version="0.5.1"/>
     </item>
