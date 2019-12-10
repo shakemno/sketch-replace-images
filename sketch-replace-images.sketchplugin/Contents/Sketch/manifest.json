@@ -3,13 +3,13 @@
   "bundleVersion": 1,
   "commands": [
     {
-      "script": "sketch-replace-images.js",
+      "script": "__sketch-replace-images.js",
       "shortcut": "shift ctrl command r",
       "name": "Sketch Replace Images",
       "identifier": "sketch-replace-images"
     },
     {
-      "script": "sketch-replace-images-settings.js",
+      "script": "__sketch-replace-images-settings.js",
       "shortcut": "",
       "name": "Sketch Replace Images Settings",
       "identifier": "sketch-replace-images-settings"
