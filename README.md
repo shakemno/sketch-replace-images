@@ -1,3 +1,8 @@
+# This repository is no longer maintained.
+
+
+---
+
 # Sketch Replace Images
 
 A plugin to replace (as in update) existing images by name in a sketch document.
